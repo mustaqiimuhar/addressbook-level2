@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import java.util.ArrayList;
+
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -82,5 +84,14 @@ public interface ReadOnlyPerson {
             builder.append(tag);
         }
         return builder.toString();
+    }
+    
+    default String getPrintableString(Printable...printables){
+    	ArrayList<String> allPrintables = new ArrayList<String>();
+    	for (Printable printable : printables) {
+    		allPrintables.add(printable.getPrintableString());
+    	}
+    	String joinPrintables = String.join(", ", allPrintables);
+    	return joinPrintables;
     }
 }
